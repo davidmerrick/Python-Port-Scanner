@@ -2,7 +2,7 @@
 from socket import * 
 import threading
 import sys
-from datetime import datetime
+import datetime
 
 #Global variables
 num_threads = 100
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     	#Time the scan
 	#Start timer
-	#start = datetime.now()
+	start = datetime.datetime.now()
 
 	#scan reserved ports 20-max_port
    	for i in range(0, num_threads):
@@ -47,6 +47,7 @@ if __name__ == '__main__':
 		t.start()
 	
 	#Stop the timer
-	#elapsed_time = datetime.now() - start
+	elapsed_time = datetime.datetime.now() - start
 	print_results()
-	#print '%d ports scanned in %d seconds' % (max_port - 20, elapsed_time)
+	print '%d ports scanned in %d microseconds' % (max_port - 20, elapsed_time.microseconds)
+
