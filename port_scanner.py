@@ -2,6 +2,7 @@
 from socket import * 
 import threading
 import sys
+from datetime import datetime
 
 #Global variables
 num_threads = 100
@@ -32,7 +33,11 @@ if __name__ == '__main__':
 	target_ip = gethostbyname(target)
    	print 'Starting scan on host:', target_ip
 
-    	#scan reserved ports 20-max_port
+    	#Time the scan
+	#Start timer
+	#start = datetime.now()
+
+	#scan reserved ports 20-max_port
    	for i in range(0, num_threads):
 		#Determine next min and max port ranges to scan
 		min = 20 + i * (max_port / num_threads)
@@ -41,4 +46,7 @@ if __name__ == '__main__':
 		t = threading.Thread(target=scan_port_range, args=(min, max, target_ip))
 		t.start()
 	
+	#Stop the timer
+	#elapsed_time = datetime.now() - start
 	print_results()
+	#print '%d ports scanned in %d seconds' % (max_port - 20, elapsed_time)
